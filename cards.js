@@ -3,7 +3,7 @@ var cards = (function() {
     //The global options
     var opt = {
         cardSize: {
-            width: 100,
+            width: 92,
             height: 140,
             padding: 20
         },
@@ -46,8 +46,8 @@ var cards = (function() {
                 opt.acesHigh = false;
                 start = opt.acesHigh ? 2 : 1;
                 end = start + 12;
-            break;
-                case EUCHRE:
+                break;
+            case EUCHRE:
                 start = 9;
                 end = start + 5;
                 break;
@@ -113,13 +113,34 @@ var cards = (function() {
             this.el = $('<div/>').css({
                 width: opt.cardSize.width,
                 height: opt.cardSize.height,
-                "background-image": 'url(svg2/' + this.rank + this.suit.toUpperCase() + '.svg)',
+                "background-image": 'url(images/' + this.getFilename() + ')',
                 "background-size": "cover",
                 position: 'absolute',
                 cursor: 'pointer'
             }).addClass('card').data('card', this).appendTo($(table));
             this.showCard();
             this.moveToFront();
+        },
+
+        getFilename: function() {
+            var name = "";
+
+            switch (this.suit) {
+                case "h":
+                    name = "Hearts";
+                    break;
+                case "d":
+                    name = "Diamonds"
+                    break;
+                case "s":
+                    name = "Spades";
+                    break;
+                case "c":
+                    name = "Clubs";
+                    break;
+            }
+
+            return name + "_" + this.rank + ".png";
         },
 
         toString: function() {
@@ -178,7 +199,8 @@ var cards = (function() {
             this.rotate(0);
             $(this.el).css('background-position', xpos + 'px ' + ypos + 'px');
             */
-            $(this.el).css("background-image", 'url(svg2/' + this.rank + this.suit.toUpperCase() + '.svg)');
+            //$(this.el).css("background-image", 'url(svg2/' + this.rank + this.suit.toUpperCase() + '.svg)');
+            $(this.el).css("background-image", 'url(images/' + this.getFilename() + ')');
         },
 
         hideCard: function(position) {
@@ -186,7 +208,7 @@ var cards = (function() {
             var y = opt.cardback == 'red' ? 0 * opt.cardSize.height : -1 * opt.cardSize.height;
             $(this.el).css('background-position', '0px ' + y + 'px');
             */
-            $(this.el).css('background-image', 'url(svg2/' + ('red' === opt.cardback ? 'RED_BACK' : 'BLUE_BACK') + '.svg)');
+            $(this.el).css('background-image', 'url(images/back_' + opt.cardback + '.png)');
             this.rotate(0);
         },
 
