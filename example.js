@@ -13,8 +13,8 @@ deck.addCards(cards.all);
 deck.render({immediate:true});
 
 //Now lets create a couple of hands, one face down, one face up.
-upperhand = new cards.Hand({faceUp:false, y:60});
-lowerhand = new cards.Hand({faceUp:true,  y:-60});
+upperhand = new cards.Hand({faceUp:false, y:20});
+lowerhand = new cards.Hand({faceUp:true,  y:-20});
 
 //Lets add a discard pile
 discardPile = new cards.Deck({faceUp:true});

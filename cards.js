@@ -132,13 +132,13 @@ var cards = (function() {
 
             if (y > 0) {
                 $.extend(props, {
-                    top: y - (opt.cardSize.height / 2),
+                    top: y,
                     bottom: auto,
                 });
             } else {
                 $.extend(props, {
                     top: auto,
-                    bottom: Math.abs(y) - (opt.cardSize.height / 2),
+                    bottom: Math.abs(y),
                 });
             }
 
@@ -226,7 +226,7 @@ var cards = (function() {
         init: function(options) {
             options = options || {};
             this.x = options.x || $(opt.table).width() / 2;
-            this.y = options.y || $(opt.table).height() / 2;
+            this.y = options.y || $(opt.table).height() / 2 - Math.round(opt.cardSize.height / 2, 0);
             this.faceUp = options.faceUp;
         },
 
@@ -332,9 +332,9 @@ var cards = (function() {
             var bottom = 'auto';
 
             if (this.y > 0) {
-                top = Math.round(this.y - opt.cardSize.height / 2, 0);
+                top = this.y;
             } else {
-                bottom = Math.round(Math.abs(this.y) - opt.cardSize.height / 2, 0);
+                bottom = Math.abs(this.y);
             }
 
             var condenseCount = 6;
@@ -390,9 +390,9 @@ var cards = (function() {
             var bottom = 'auto';
 
             if (this.y > 0) {
-                top = Math.round(this.y - opt.cardSize.height / 2, 0);
+                top = this.y;
             } else {
-                bottom = Math.round(Math.abs(this.y) - opt.cardSize.height / 2, 0);
+                bottom = Math.abs(this.y);
             }
 
             for (var i = 0; i < this.length; i++) {
