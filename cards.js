@@ -3,9 +3,9 @@ var cards = (function() {
     //The global options
     var opt = {
         cardSize: {
-            width: 69,
-            height: 94,
-            padding: 18
+            width: 100,
+            height: 140,
+            padding: 20
         },
         animationSpeed: 500,
         table: 'body',
@@ -113,7 +113,8 @@ var cards = (function() {
             this.el = $('<div/>').css({
                 width: opt.cardSize.width,
                 height: opt.cardSize.height,
-                "background-image": 'url(' + opt.cardsUrl + ')',
+                "background-image": 'url(svg2/' + this.rank + this.suit.toUpperCase() + '.svg)',
+                "background-size": "cover",
                 position: 'absolute',
                 cursor: 'pointer'
             }).addClass('card').data('card', this).appendTo($(table));
@@ -171,15 +172,21 @@ var cards = (function() {
                 rank = 1; //Aces high must work as well.
             }
 
+            /*
             xpos = -rank * opt.cardSize.width;
             ypos = -offsets[this.suit] * opt.cardSize.height;
             this.rotate(0);
             $(this.el).css('background-position', xpos + 'px ' + ypos + 'px');
+            */
+            $(this.el).css("background-image", 'url(svg2/' + this.rank + this.suit.toUpperCase() + '.svg)');
         },
 
         hideCard: function(position) {
+            /*
             var y = opt.cardback == 'red' ? 0 * opt.cardSize.height : -1 * opt.cardSize.height;
             $(this.el).css('background-position', '0px ' + y + 'px');
+            */
+            $(this.el).css('background-image', 'url(svg2/' + ('red' === opt.cardback ? 'RED_BACK' : 'BLUE_BACK') + '.svg)');
             this.rotate(0);
         },
 
